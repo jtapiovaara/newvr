@@ -1,0 +1,44 @@
+<nav>
+    <form>
+        <button hx-get="{% url 'newchatbutton' %}"
+                hx-target="#main"
+                hx-swap="beforeend">+ New chat</button>
+    </form>
+    {% for story in context.stories %}
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <button hx-get="{% url 'getchat' story.id %}"
+                    hx-target="#main"
+                    title="{{ story.name }}"
+                    style="flex-grow: 1;">{{ story }}</button>
+            {% if story.owner == context.user %}
+                <i class="fa fa-trash"
+                   title="Erase"
+                   hx-post="{% url 'deletechat' story.id %}"
+                   hx-confirm="Are you sure you wish to delete selected Chat?"
+                   hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+                   hx-target="#chatlist"
+                   style="margin-left: 10px;"></i>
+            {% endif %}
+        </div>
+    {% endfor %}
+    <hr>
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <button type="submit">Logout & Leave</button>
+        </div>
+    </form>
+    <hr>
+    <div>
+        <form class="w3-margin-bottom" method="GET"
+              hx-get="{% url 'toggle_tools' %}"
+              hx-trigger="change from:input[type='checkbox']"
+              hx-target="#tools_nav" hx-swap="outerHTML">
+            <p><input type="checkbox"
+                      name="togglestate" {% if tools_visible %}checked{% endif %}>&nbsp;&nbsp;AI työkaluja</p>
+        </form>
+    </div>
+    <div style="margin-top: 10px;">
+        <a href="{% url 'user_guide' %}" class="w3-button w3-block w3-blue w3-round">User Guide</a>
+    </div>
+</nav>

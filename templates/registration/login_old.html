@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block page_content %}
+    {% load static %}
+<style>
+    body {
+        background-image: url("{% static 'login_backround_cool.png'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .login-form {
+    width: 300px;
+    margin: 50px auto;
+    color: white;
+}
+</style>
+<body>
+    <h2 class="w3-center" style="color: white">Welcome to play around with OpenAI</h2>
+    <div class="w3-container w3-center login-form">
+        <title>Login to djangoAI</title>
+        <form method="POST" class="w3-margin-top">
+            {% csrf_token %}
+            {{ form.username.label_tag }}
+            {{ form.username }}
+            {{ form.password.label_tag }}
+            {{ form.password }}
+            <button type="submit" class="w3-button w3-margin-top">Lets go!</button>
+        </form>
+    </div>
+</body>
+{% endblock %}

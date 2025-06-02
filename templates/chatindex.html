@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_content %}
+<body>
+<div id="chatlist">
+    {% include 'partials/chat_nav.html' %}
+</div>
+<main id="chatdialoque">
+    <div id="main" class="messages">
+        <div class="w3-container w3-margin w3-center">
+            <img src="{% static 'images/rusty_flamish_19th_century.webp' %}"
+                 style="width:40%"><br>
+            <h3>THIS IS GENERAL PURPOSE BASE AI CHAT</h3>
+            <p>You can further develop and change it to fit your purpose</p>
+        </div>
+    </div> 
+</main>
+<div id="user-tools">
+    {% include 'partials/tools_nav.html' %}
+</div>
+</body>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+{% endblock %}

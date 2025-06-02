@@ -1,0 +1,11 @@
+{% load static %}
+<form class="w3-margin-bottom" method="POST" 
+      hx-post="{% url 'upusergroup' %}"
+      hx-trigger="change from:input[type='checkbox']"
+      hx-include="[name='user_groups'], [name='chat_id']"
+      hx-swap="outerHTML">
+    {% csrf_token %}
+    {{ context.form.user_groups }}
+{#    {{ context.form.errors }}#}
+    <input type="hidden" name="chat_id" value="{{ context.chat_id }}">
+</form>

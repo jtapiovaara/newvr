@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="{% static 'images/ouraring.jpg' %}"/>
+    <title>Login & Registration</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">    
+</head>
+{#<style>#}
+{#    body {#}
+{#        background-image: url("{% static 'images/teknoma_otsikko.png'%}");#}
+{#        background-repeat: no-repeat;#}
+{#        background-size: cover;#}
+{#    }#}
+{#</style>#}
+<body>
+<div class="w3-center w3-xlarge w3-responsive">
+    <img src="{% static 'images/process.gif'%}" style="width: 10%"><br>
+    {% if form.errors %}
+        <p>Your username and password didn't match. Please try again.</p>
+    {% endif %}
+    {% if next %}
+        {% if user.is_authenticated %}
+            <p>Your account doesn't have access. To proceed, please login with an account that has access.</p>
+        {% else %}
+            <p>Tervetuloa, tämä on MainlyChat.</p>
+            <p>Ole hyvä ja kirjaudu jatkaaksesi</p>
+        {% endif %}
+    {% endif %}
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+            {{ form.username.label_tag }}<br>
+            {{ form.username }}<br>
+            {{ form.password.label_tag }}<br>
+            {{ form.password }} <br>   
+        <input class="w3-margin" type="submit" value="login">
+        <input type="hidden" name="next" value="{{ next }}">
+    </form>
+{# Assumes you set up the password_reset view in your URLconf #}
+{#    <p><a href="{% url 'password_reset' %}">Lost password?</a></p>#}
+{#    <p><a href="#">Lost password?</a></p>#}
+</div>
+</body>
+</html>

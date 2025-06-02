@@ -1,0 +1,20 @@
+{% load static %}
+
+<form hx-post="{% url 'createnewchat' %}" hx-target="#main" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div style="flex: 1; display: flex; align-items: center;">
+        <input type="file" id="imagefile" name="imagefile" accept="image/*" style="display: none;">
+        <label for="imagefile" style="cursor: pointer; flex: 0 0 5%; text-align: center;">
+            <img src="{% static 'images/image_logo.png' %}"
+                 alt="Upload"
+                 title="Liitä kuva"
+                 style="width: 30px; height: 30px;">
+        </label>
+        <input type="text" name="myquestion"
+               style="flex: 0 0 95%" title="Your question">
+
+    </div>
+    <button type="submit" style="flex: 0 0 10%;" class="w3-margin-right">Send&nbsp;<img class="htmx-indicator w3-circle"
+                                                  src="{% static 'images/process.gif' %}"
+                                                  style="width: 16px"></button>
+</form>

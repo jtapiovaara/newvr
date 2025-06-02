@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_content %}
+<div class="w3-container w3-padding">
+    <h1 class="w3-center">MainlyChat User Guide</h1>
+    
+    <div class="w3-card w3-padding w3-margin-bottom">
+        <h2>Introduction</h2>
+        <p>MainlyChat is a Django-based chat application with AI capabilities powered by OpenAI. It allows you to create and manage chat conversations, upload and analyze images, and utilize various AI tools for specific tasks.</p>
+        <p>The application is designed to be flexible and can be customized to fit different purposes. It features a clean, intuitive interface with a sidebar for navigation and a main content area for displaying chat conversations.</p>
+        
+        <h3>Key Features</h3>
+        <ul>
+            <li>AI-powered chat conversations</li>
+            <li>Image analysis (both uploaded and from URLs)</li>
+            <li>Multiple specialized AI tools</li>
+            <li>User group management for sharing chats</li>
+            <li>Simple and intuitive interface</li>
+        </ul>
+    </div>
+    
+    <div class="w3-card w3-padding w3-margin-bottom">
+        <h2>User Interface</h2>
+        <p>The MainlyChat interface consists of three main sections:</p>
+        
+        <h3>1. Chat Navigation Sidebar</h3>
+        <p>Located on the left side of the screen, this sidebar displays:</p>
+        <ul>
+            <li>A "New chat" button to create a new conversation</li>
+            <li>A list of your existing chats</li>
+            <li>A logout button</li>
+            <li>A toggle for showing/hiding AI tools</li>
+        </ul>
+        
+        <h3>2. Main Content Area</h3>
+        <p>The central part of the interface where chat conversations are displayed:</p>
+        <ul>
+            <li>Shows the chat title at the top</li>
+            <li>Displays the conversation with alternating styles for user and AI messages</li>
+            <li>Shows images that have been shared in the conversation</li>
+            <li>Includes a form at the bottom for sending new messages</li>
+        </ul>
+        
+        <h3>3. AI Tools Sidebar</h3>
+        <p>Located on the right side of the screen (can be toggled on/off):</p>
+        <ul>
+            <li>Contains buttons for various AI tools organized in categories</li>
+            <li>Clicking a tool button loads the corresponding tool interface in the main content area</li>
+        </ul>
+    </div>
+    
+    <div class="w3-card w3-padding w3-margin-bottom">
+        <h2>Features and Functionality</h2>
+        
+        <h3>Chat Management</h3>
+        
+        <h4>Creating a New Chat</h4>
+        <ol>
+            <li>Click the "+ New chat" button in the left sidebar</li>
+            <li>Enter your question in the input field</li>
+            <li>Click "Send" to start the conversation</li>
+        </ol>
+        
+        <h4>Viewing Existing Chats</h4>
+        <ul>
+            <li>All your chats are listed in the left sidebar</li>
+            <li>Click on a chat to open it in the main content area</li>
+        </ul>
+        
+        <h4>Deleting a Chat</h4>
+        <ul>
+            <li>Click the trash icon next to a chat in the sidebar</li>
+            <li>Confirm the deletion when prompted</li>
+        </ul>
+        
+        <h3>Sending Messages</h3>
+        
+        <h4>Text Messages</h4>
+        <ol>
+            <li>Type your message in the input field at the bottom of the chat</li>
+            <li>Click "Send" or press Enter</li>
+        </ol>
+        
+        <h4>Image Messages</h4>
+        <ol>
+            <li>Click the image icon next to the input field</li>
+            <li>Select an image from your device</li>
+            <li>Add a question or description in the input field</li>
+            <li>Click "Send"</li>
+        </ol>
+        
+        <h3>Sharing Chats</h3>
+        <p>Chats can be shared with user groups:</p>
+        <ol>
+            <li>Open a chat</li>
+            <li>Use the group selection form at the top of the chat</li>
+            <li>Select the groups you want to share with</li>
+            <li>Submit the form</li>
+        </ol>
+        
+        <h3>Copying Chat Content</h3>
+        <p>To copy the entire chat conversation to your clipboard:</p>
+        <ol>
+            <li>Click the copy icon at the bottom of the chat</li>
+            <li>The content will be copied and a confirmation alert will appear</li>
+        </ol>
+    </div>
+    
+    <div class="w3-card w3-padding w3-margin-bottom">
+        <h2>AI Tools</h2>
+        <p>MainlyChat includes several specialized AI tools that can be accessed from the right sidebar:</p>
+        
+        <h3>Translation Tool (Kääntäjä)</h3>
+        <p>Translates text between different languages.</p>
+        
+        <h3>Sales Support (Myyjän tuki)</h3>
+        <p>Provides assistance for sales-related queries and tasks.</p>
+        
+        <h3>Article Helper (Artikkeliapu)</h3>
+        <p>Assists with writing, editing, and improving articles.</p>
+        
+        <h3>Document Analyzer (Dokumenttianalysaattori)</h3>
+        <p>Analyzes documents and extracts key information.</p>
+        
+        <h3>Document Comparison (Vertaa kahta dokumenttia)</h3>
+        <p>Compares two documents and highlights differences.</p>
+        
+        <h3>AI Reasoning Assistant (AI päättelyapu)</h3>
+        <p>Helps with logical reasoning and problem-solving.</p>
+        
+        <h3>Business Intelligence AI (BI AI)</h3>
+        <p>Provides insights and analysis for business intelligence tasks.</p>
+    </div>
+    
+    <div class="w3-card w3-padding w3-margin-bottom">
+        <h2>Troubleshooting and FAQ</h2>
+        
+        <h3>Common Issues</h3>
+        
+        <h4>Chat Not Loading</h4>
+        <ul>
+            <li>Ensure you're logged in</li>
+            <li>Check your internet connection</li>
+            <li>Try refreshing the page</li>
+        </ul>
+        
+        <h4>Image Upload Failing</h4>
+        <ul>
+            <li>Ensure the image is in a supported format (JPEG, PNG, etc.)</li>
+            <li>Check that the image file size is not too large</li>
+            <li>Try a different image</li>
+        </ul>
+        
+        <h4>AI Response Taking Too Long</h4>
+        <ul>
+            <li>Large or complex queries may take longer to process</li>
+            <li>Check your internet connection</li>
+            <li>Try simplifying your query</li>
+        </ul>
+        
+        <h3>FAQ</h3>
+        
+        <h4>Q: Can I use MainlyChat offline?</h4>
+        <p>A: No, MainlyChat requires an internet connection to communicate with the OpenAI API.</p>
+        
+        <h4>Q: Is my conversation data secure?</h4>
+        <p>A: Conversations are stored in the application's database. Access is restricted to the chat owner and users in groups the chat has been shared with.</p>
+        
+        <h4>Q: Can I export my chat history?</h4>
+        <p>A: Yes, you can copy the entire chat to your clipboard using the copy button at the bottom of the chat.</p>
+        
+        <h4>Q: How do I change my password?</h4>
+        <p>A: Use the Django admin interface or contact your system administrator.</p>
+        
+        <h4>Q: Can I customize the AI models used?</h4>
+        <p>A: Yes, the models can be configured in the `.env` file by changing the MODEL_ANALYSIS, MODEL_IMAGE, and MODEL_FUTURE variables.</p>
+    </div>
+    
+    <div class="w3-center w3-padding">
+        <a href="{% url 'startchat' %}" class="w3-button w3-blue">Return to Chat</a>
+    </div>
+</div>
+{% endblock %}

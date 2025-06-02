@@ -1,0 +1,77 @@
+{% load static %}
+{% load dictionary_extras %}
+{% include 'partials/upusergroup.html' %}
+<br><br>
+<h3>{{ context.chat_name }}</h3>
+
+<div class="w3-row w3-margin">
+    {% for chatrow, url in context.chat_images.items %}
+            <div class="w3-cell"><img src="{{ url }}" 
+                                      alt="Chat Image {{ chatrow }}" 
+                                      style="height: 50px;">&nbsp;</div>
+    {% endfor %}
+</div>
+<div id="chat_content">
+    {% for talk in context.chat_rows %}
+        {% if talk.is_ai %}
+            <div class="main assistant.message">
+                {{ talk.content|safe }}
+        {% else %}
+            <div class="main message">
+                    {% if forloop.counter in context.chat_images %}
+                        {{ talk.content }}&nbsp;<img class="w3-round w3-shadow w3-image"
+                                             src="{{ context.chat_images|get_item:forloop.counter}}"
+                                             alt="Chat Image {{ forloop.counter }}"
+                                             style="max-width: 200px; max-height: 200px;">
+                    {% else %}
+                        {{ talk.content }}
+                    {% endif %}
+            </div><br>
+        {% endif %}
+    {% endfor %}
+</div>
+</div>
+
+
+<form hx-post="{% url 'savechat' %}" hx-target="#main" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="hidden" name="chat_id" value="{{ context.chat_id }}">
+    <div style="flex: 1; display: flex; align-items: center;">
+        <button class="w3-left w3-white" onclick="myFunction()">
+            <img src="{% static 'images/copy_chat.png' %}"
+                 style="width: 30px; flex: 0 0 4%;"
+                 title="Kopioi keskustelu leikepöydälle">
+        </button>
+        <input type="file" id="imagefile" name="imagefile" accept="image/*" style="display: none;">
+        <label for="imagefile" style="cursor: pointer; flex: 0 0 4%; text-align: center;">
+            <img src="{% static 'images/image_logo.png' %}"
+                 alt="Upload"
+                 title="Liitä kuva"
+                 style="width: 30px; height: 30px;">
+        </label>
+        <input type="text" name="myquestion"
+               style="flex: 0 0 82%" title="Your question">
+    </div>
+    <button type="submit" style="flex: 0 0 10%;" class="w3-margin-right">Send&nbsp;<img class="htmx-indicator w3-circle"
+                                                  src="{% static 'images/process.gif' %}"
+                                                  style="width: 16px"></button>
+</form>
+{#<div>#}
+{#    <button class="w3-left" onclick="myFunction()">#}
+{#        <img src="{% static 'images/copy_chat.png' %}"#}
+{#             style="width: 30px"#}
+{#             title="Kopioi keskustelu leikepöydälle">#}
+{#    </button>#}
+{#</div>#}
+<script>
+function myFunction() {
+    let copyTextDiv = document.getElementById("chat_content");
+    let textToCopy = copyTextDiv.innerText || copyTextDiv.textContent;
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        alert("Chat dialogue copied to clipboard!");
+    }, () => {
+        alert("Failed to copy the dialogue.");
+    });
+}
+</script>
+

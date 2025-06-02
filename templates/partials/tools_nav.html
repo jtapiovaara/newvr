@@ -1,0 +1,45 @@
+<nav id="tools_nav" style="{% if not tools_visible %}display: none;{% endif %}">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <button style="width: 100%"
+                hx-get="{% url 'tools_demo' %}?teknoma=translator"
+                hx-target="#main">Kääntäjä</button>
+    </div>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <button style="width: 100%"
+                hx-get="{% url 'tools_demo' %}?teknoma=salesadd"
+                hx-target="#main">Myyjän tuki</button>
+    </div>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <button style="width: 100%"
+                hx-get="{% url 'tools_demo' %}?teknoma=article"
+                hx-target="#main">Artikkeliapu</button>
+    </div>
+    <hr>
+    <div style="display: flex; justify-content: space-between; align-items: center;"
+         hx-get="{% url 'tools_demo' %}?teknoma=docanalyser"
+         hx-target="#main">
+        <button>Dokumenttianalysaattori</button>
+    </div>
+    <div style="display: flex; justify-content: space-between; align-items: center;"
+         hx-get="{% url 'tools_demo' %}?teknoma=comparedocs"
+         hx-target="#main">
+        <button title="Vertaa esimerkiksi kahta versiota samasta dokumentista">Vertaa kahta dokumenttia</button>
+    </div>
+    <div style="display: flex; justify-content: space-between; align-items: center;"
+         hx-get="{% url 'tools_demo' %}?teknoma=askanything"
+         hx-target="#main">
+        <button >AI päättelyapu</button>
+    </div>
+    <hr>
+    <div style="display: flex; justify-content: space-between; align-items: center;"
+         hx-get="{% url 'tools_demo' %}?teknoma=bianalysis"
+         hx-target="#main">
+        <button>BI AI</button>
+    </div>
+    <div style="display: flex; justify-content: space-between; align-items: center;"
+         hx-get="{% url 'tools_demo' %}?teknoma=cats"
+         hx-target="#main">
+        <button>Imager</button>
+    </div>
+</nav>
+

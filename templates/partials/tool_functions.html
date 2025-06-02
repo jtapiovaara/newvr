@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>{{ context.image_name }}</title>
+{#    <script src="https://unpkg.com/htmx.org@2.0.4"#}
+{#            integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+"#}
+{#            crossorigin="anonymous"></script>#}
+</head>
+<body>
+<div>
+    <img src="{% static context.logo %}" alt="logo" class="w-15 h-15" style="float: right;">
+</div>
+<div class="flex items-center justify-center h-screen">
+    <a href="{% url 'startchat' %}">
+        <img src="{% static context.image %}" alt="teknoma" style="width: 75%">
+    </a>
+</div>
+</body>
+</html>
