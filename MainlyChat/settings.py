@@ -27,9 +27,9 @@ MODEL_IMAGE = env('MODEL_IMAGE')
 MODEL_FUTURE = env('MODEL_FUTURE')
 SCREEN_REQUESTER = env('SCREEN_REQUESTER')
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['64.225.76.82']
 
 
 # Application definition
