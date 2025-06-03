@@ -135,7 +135,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 # STATIC_ROOT = BASE_DIR /  'collectedstatic'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+# MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = '/var/www/justchat/media/'
 STATIC_ROOT = '/var/www/justchat/static/'
 
 # Default primary key field type
