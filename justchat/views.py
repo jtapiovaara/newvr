@@ -1,39 +1,22 @@
 from openai import OpenAI
-from io import BytesIO
 import base64
-
-from docx import Document
-from pptx import Presentation
-from pypdf import PdfReader
 
 import re
 import requests
-import logging
 from pathlib import Path
 import uuid
 import markdown
-import fitz
-import PIL
 import os
 
 from django.utils.html import escape
 from django.http import JsonResponse
-from django.template.loader import render_to_string
-from django.core.files.storage import FileSystemStorage
-from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
-from django.core.files.storage import default_storage
+from django.shortcuts import render, get_object_or_404
+
 from django.contrib.auth.models import Group
 
-from MainlyChat.settings import (OPENAI_API_KEY, MODEL_ANALYSIS, MODEL_FUTURE, MEDIA_URL, MEDIA_ROOT)
+from MainlyChat.settings import (OPENAI_API_KEY, MODEL_ANALYSIS, MODEL_FUTURE, MEDIA_ROOT)
 from justchat.models import Chat, ChatImage
 from justchat.forms import OtherModelsForm
-
-# Create logger. Logger is always used when openAI is called.
-LOG_FORMAT = "%(levelname)s %(asctime)s - %(message)s"
-logging.basicConfig(filename='logging/lumberjack.log',
-                    level=logging.INFO,
-                    format=LOG_FORMAT)
-logger = logging.getLogger()
 
 chat_row_pattern = 'c_r_p'
 client = OpenAI(api_key=OPENAI_API_KEY)
@@ -116,7 +99,6 @@ def image_ai(image_question, image_url):
         max_tokens=4096,
     )
     reply = response.choices[0].message.content
-    logger.info(f'web image reply: {reply}')
     return reply
 
 
@@ -140,7 +122,6 @@ def createnewchat(request):
         empty_dialoque = ''
         dialoque = request.POST.get('myquestion')
         image_file = request.FILES.get('imagefile')
-        logger.info(image_file)
         chatname = title_ai(dialoque)
         response = turbomode_ai(empty_dialoque, dialoque)
         new_answer = chat_row_pattern + response
@@ -149,14 +130,7 @@ def createnewchat(request):
         savenewchat.save()
         chat_id = savenewchat.id
         request.session['this_chat'] = chat_id
-        # chat_rows = re.split(chat_row_pattern, dialoque)
-        # context = {
-        #     'chat_id': chat_id,
-        #     'chat_name': chatname,
-        #     'chat_rows': chat_rows,
-        # }
         return getchat(request, id=chat_id)
-        # return render(request, 'partials/chat_modal.html', {'context': context})
     return render(request, 'chatindex.html')
 
 
@@ -245,7 +219,6 @@ def savechat(request):
         # Handle web URL media file
         elif media_file:
             web_image_path, web_image_name = save_image_file(media_file, chat_name)
-            # logger.info(f"Saved web image: {web_image_path}")
             web_media_response = image_ai(question, media_file)
             new_answer = web_media_response
 
