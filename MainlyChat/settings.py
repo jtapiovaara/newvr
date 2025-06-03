@@ -29,7 +29,8 @@ SCREEN_REQUESTER = env('SCREEN_REQUESTER')
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['64.225.76.82', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['64.225.76.82', '127.0.0.1', '*']
+# ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -132,7 +133,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR /  'collectedstatic'
+# STATIC_ROOT = BASE_DIR /  'collectedstatic'
+STATIC_ROOT = '/var/www/newvr/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
