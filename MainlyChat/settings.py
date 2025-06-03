@@ -29,7 +29,7 @@ SCREEN_REQUESTER = env('SCREEN_REQUESTER')
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['64.225.76.82']
+ALLOWED_HOSTS = ['64.225.76.82', '127.0.0.1', 'localhost']
 
 
 # Application definition
